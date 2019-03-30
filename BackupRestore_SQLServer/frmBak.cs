@@ -29,9 +29,9 @@ namespace BackupRestore_SQLServer
             this.backup_devicesTableAdapter.Fill(this.DS.backup_devices);
 
             lblDbName.Text = Program.dBname;
-            grbFullBak.Enabled = false;
-            String s0 = "SELECT database_name FROM msdb.dbo.Backupset WHERE database_name='"+lblDbName.Text+"'";
+            String s0 = "SELECT database_name FROM msdb.dbo.Backupset WHERE database_name='" + lblDbName.Text + "'";
             Program.myReader = Program.ExecSqlDataReader(s0);
+            //nếu bản full đã tồn tại thì cho hiện differential.
             if (Program.myReader.HasRows)
             {
                 IDictionary<int, string> dict = new Dictionary<int, string>();
@@ -40,6 +40,7 @@ namespace BackupRestore_SQLServer
                 dict.Add(3, "Transaction log");
                 cmbBakType.DataSource = new BindingSource(dict, null);
             }
+            //chưa tồn tại thì k hiện.
             else
             {
                 IDictionary<int, string> dict = new Dictionary<int, string>();
@@ -51,15 +52,31 @@ namespace BackupRestore_SQLServer
             cmbBakType.DisplayMember = "Value";
             cmbBakType.ValueMember = "Value";
 
-            String s1 = "";
-            if (chkboxFullBak.Checked==true)
-            {
-                grbFullBak.Enabled = true;
-                s1 =s1+ "BACKUP DATABASE " + Program.dBname.Trim() + " TO " + cmbBakDevice.SelectedValue.ToString() + " WITH DESCRIPTION = '" + txtDescript.Text.Trim()+"', ";
-                
-            }
-            
         }
-        
+
+        private void cmbBakType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbBakType.SelectedValue.ToString() != "Transaction log")
+            {
+                txtDescript.Enabled = false;
+            }
+            else txtDescript.Enabled = true;
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            String sbak = "";
+            String slogbak = "";
+            String ow = "";
+
+            if (chkboxOw.Checked == true)
+            {
+                ow = "INIT";
+            }
+
+            sbak = "BACKUP DATABASE " + Program.dBname.Trim() + " TO " + cmbBakDevice.SelectedValue.ToString() + " WITH DESCRIPTION = '" + txtDescript.Text.Trim() + "', " + ow;
+        }
     }
+
 }
+
