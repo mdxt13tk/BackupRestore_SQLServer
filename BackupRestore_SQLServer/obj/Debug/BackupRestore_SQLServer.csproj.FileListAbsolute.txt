@@ -106,3 +106,4 @@ E:\WORK\CODE\Visual Studio\BackupRestore_SQLServer\BackupRestore_SQLServer\bin\D
 E:\WORK\CODE\Visual Studio\BackupRestore_SQLServer\BackupRestore_SQLServer\obj\Debug\BackupRestore_SQLServer.frmCreateBakDevice.resources
 E:\WORK\CODE\Visual Studio\BackupRestore_SQLServer\BackupRestore_SQLServer\obj\Debug\BackupRestore_SQLServer.frmBak.resources
 E:\WORK\CODE\Visual Studio\BackupRestore_SQLServer\BackupRestore_SQLServer\obj\Debug\BackupRestore_SQLServer.frmBakDevice.resources
+E:\WORK\CODE\Visual Studio\BackupRestore_SQLServer\BackupRestore_SQLServer\obj\Debug\BackupRestore_SQLServer.frmRestore.resources

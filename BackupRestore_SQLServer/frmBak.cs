@@ -58,9 +58,12 @@ namespace BackupRestore_SQLServer
         {
             if (cmbBakType.SelectedValue.ToString() != "Transaction log")
             {
+                txtDescript.Enabled = true;
+            }
+            else
+            {
                 txtDescript.Enabled = false;
             }
-            else txtDescript.Enabled = true;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -71,10 +74,43 @@ namespace BackupRestore_SQLServer
 
             if (chkboxOw.Checked == true)
             {
-                ow = "INIT";
+                if (cmbBakType.SelectedValue.ToString() != "Transaction log") ow = ", INIT";
+                else ow = " WITH INIT";
             }
 
-            sbak = "BACKUP DATABASE " + Program.dBname.Trim() + " TO " + cmbBakDevice.SelectedValue.ToString() + " WITH DESCRIPTION = '" + txtDescript.Text.Trim() + "', " + ow;
+            sbak = "BACKUP DATABASE " + Program.dBname.Trim() + " TO " + cmbBakDevice.SelectedValue.ToString() + " WITH DESCRIPTION = '" + txtDescript.Text.Trim() + "'" + ow;
+            slogbak = "BACKUP LOG " + Program.dBname.Trim() + " TO " + cmbBakDevice.SelectedValue.ToString() + ow;
+            try
+            {
+                if (cmbBakType.SelectedValue.ToString() != "Transaction log")
+                {
+                    Program.myReader = Program.ExecSqlDataReader(sbak);
+                }
+                else
+                {
+                    Program.myReader = Program.ExecSqlDataReader(slogbak);
+                }
+                Program.myReader.Close();
+                MessageBox.Show("Backup thành công!", "", MessageBoxButtons.OK);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không Backup được!\n"+ex, "Lỗi!", MessageBoxButtons.OK);
+            }
+
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void chkboxOw_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (chkboxOw.Checked == true)
+            {
+                MessageBox.Show("Các bản Backup trong Device này sẽ bị GHI ĐÈ.\nBạn có muốn tiếp tục?", "WARNING!!!", MessageBoxButtons.OK);
+            }
         }
     }
 

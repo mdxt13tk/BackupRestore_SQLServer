@@ -36,7 +36,7 @@ namespace BackupRestore_SQLServer
         {
             SaveFileDialog savefd = new SaveFileDialog();
             savefd.Title = "Save Device backup";
-            savefd.Filter = "Backup file (*.bak)|*.bak";
+            savefd.Filter = "Backup file (*.bak)|*.bak|DAT file (*.dat)|*.dat";
             if (savefd.ShowDialog()==DialogResult.OK)
             {
                 txtPath.Text = savefd.FileName;

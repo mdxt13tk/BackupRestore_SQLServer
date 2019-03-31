@@ -33,12 +33,11 @@
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnBak = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRestore = new DevExpress.XtraBars.BarButtonItem();
             this.btnExit = new DevExpress.XtraBars.BarButtonItem();
             this.btnBakDv = new DevExpress.XtraBars.BarButtonItem();
             this.btnLogout = new DevExpress.XtraBars.BarButtonItem();
             this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
-            this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -53,22 +52,33 @@
             this.coldatabase_id = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colname = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.position_backupsGridControl = new DevExpress.XtraGrid.GridControl();
+            this.bdsPbs = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colposition = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coldescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colbackup_start_date = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coluser_name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnReload = new DevExpress.XtraEditors.SimpleButton();
+            this.position_backupsTableAdapter = new BackupRestore_SQLServer.DSTableAdapters.position_backupsTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDbs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grctrlDbs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvDbs)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.position_backupsGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsPbs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // barManager1
             // 
             this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar1,
-            this.bar3});
+            this.bar1});
             this.barManager1.DockControls.Add(this.barDockControlTop);
             this.barManager1.DockControls.Add(this.barDockControlBottom);
             this.barManager1.DockControls.Add(this.barDockControlLeft);
@@ -78,12 +88,11 @@
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.barButtonItem1,
             this.btnBak,
-            this.barButtonItem3,
+            this.btnRestore,
             this.btnExit,
             this.btnLogout,
             this.btnBakDv});
             this.barManager1.MaxItemId = 6;
-            this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
             // 
@@ -94,7 +103,7 @@
             this.bar1.FloatLocation = new System.Drawing.Point(532, 276);
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnBak, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barButtonItem3, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnRestore, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnExit, "", false, true, false, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnBakDv, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnLogout, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
@@ -111,13 +120,14 @@
             this.btnBak.Name = "btnBak";
             this.btnBak.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBak_ItemClick);
             // 
-            // barButtonItem3
+            // btnRestore
             // 
-            this.barButtonItem3.Border = DevExpress.XtraEditors.Controls.BorderStyles.Default;
-            this.barButtonItem3.Caption = "Restore";
-            this.barButtonItem3.Id = 2;
-            this.barButtonItem3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
-            this.barButtonItem3.Name = "barButtonItem3";
+            this.btnRestore.Border = DevExpress.XtraEditors.Controls.BorderStyles.Default;
+            this.btnRestore.Caption = "Restore";
+            this.btnRestore.Id = 2;
+            this.btnRestore.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRestore.ImageOptions.Image")));
+            this.btnRestore.Name = "btnRestore";
+            this.btnRestore.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRestore_ItemClick);
             // 
             // btnExit
             // 
@@ -153,20 +163,8 @@
             this.standaloneBarDockControl1.Location = new System.Drawing.Point(0, 0);
             this.standaloneBarDockControl1.Manager = this.barManager1;
             this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
-            this.standaloneBarDockControl1.Size = new System.Drawing.Size(719, 41);
+            this.standaloneBarDockControl1.Size = new System.Drawing.Size(747, 41);
             this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
-            // 
-            // bar3
-            // 
-            this.bar3.BarName = "Status bar";
-            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            this.bar3.DockCol = 0;
-            this.bar3.DockRow = 0;
-            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            this.bar3.OptionsBar.AllowQuickCustomization = false;
-            this.bar3.OptionsBar.DrawDragBorder = false;
-            this.bar3.OptionsBar.UseWholeRow = true;
-            this.bar3.Text = "Status bar";
             // 
             // barDockControlTop
             // 
@@ -174,15 +172,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(933, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(961, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 531);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 554);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(933, 23);
+            this.barDockControlBottom.Size = new System.Drawing.Size(961, 0);
             // 
             // barDockControlLeft
             // 
@@ -190,15 +188,15 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 531);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 554);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(933, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(961, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 531);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 554);
             // 
             // barButtonItem1
             // 
@@ -234,7 +232,7 @@
             this.grctrlDbs.MainView = this.grvDbs;
             this.grctrlDbs.MenuManager = this.barManager1;
             this.grctrlDbs.Name = "grctrlDbs";
-            this.grctrlDbs.Size = new System.Drawing.Size(214, 490);
+            this.grctrlDbs.Size = new System.Drawing.Size(214, 513);
             this.grctrlDbs.TabIndex = 5;
             this.grctrlDbs.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvDbs});
@@ -247,6 +245,7 @@
             this.grvDbs.GridControl = this.grctrlDbs;
             this.grvDbs.Name = "grvDbs";
             this.grvDbs.OptionsView.ShowGroupPanel = false;
+            this.grvDbs.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grvDbs_RowClick);
             // 
             // coldatabase_id
             // 
@@ -287,12 +286,126 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.position_backupsGridControl);
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.standaloneBarDockControl1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(214, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(719, 531);
+            this.panel1.Size = new System.Drawing.Size(747, 554);
             this.panel1.TabIndex = 10;
+            // 
+            // position_backupsGridControl
+            // 
+            this.position_backupsGridControl.DataSource = this.bdsPbs;
+            this.position_backupsGridControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.position_backupsGridControl.Location = new System.Drawing.Point(0, 84);
+            this.position_backupsGridControl.MainView = this.gridView1;
+            this.position_backupsGridControl.MenuManager = this.barManager1;
+            this.position_backupsGridControl.Name = "position_backupsGridControl";
+            this.position_backupsGridControl.Size = new System.Drawing.Size(747, 348);
+            this.position_backupsGridControl.TabIndex = 2;
+            this.position_backupsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // bdsPbs
+            // 
+            this.bdsPbs.DataMember = "position_backups";
+            this.bdsPbs.DataSource = this.DS;
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colposition,
+            this.coldescription,
+            this.colbackup_start_date,
+            this.coluser_name});
+            this.gridView1.GridControl = this.position_backupsGridControl;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // colposition
+            // 
+            this.colposition.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.colposition.AppearanceCell.Options.UseFont = true;
+            this.colposition.AppearanceCell.Options.UseTextOptions = true;
+            this.colposition.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colposition.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colposition.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.colposition.AppearanceHeader.Options.UseFont = true;
+            this.colposition.AppearanceHeader.Options.UseTextOptions = true;
+            this.colposition.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colposition.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colposition.Caption = "Position";
+            this.colposition.FieldName = "position";
+            this.colposition.Name = "colposition";
+            this.colposition.OptionsColumn.AllowEdit = false;
+            this.colposition.Visible = true;
+            this.colposition.VisibleIndex = 0;
+            // 
+            // coldescription
+            // 
+            this.coldescription.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.coldescription.AppearanceCell.Options.UseFont = true;
+            this.coldescription.AppearanceCell.Options.UseTextOptions = true;
+            this.coldescription.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.coldescription.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.coldescription.AppearanceHeader.Options.UseFont = true;
+            this.coldescription.AppearanceHeader.Options.UseTextOptions = true;
+            this.coldescription.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.coldescription.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.coldescription.Caption = "Description";
+            this.coldescription.FieldName = "description";
+            this.coldescription.Name = "coldescription";
+            this.coldescription.OptionsColumn.AllowEdit = false;
+            this.coldescription.Visible = true;
+            this.coldescription.VisibleIndex = 1;
+            // 
+            // colbackup_start_date
+            // 
+            this.colbackup_start_date.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.colbackup_start_date.AppearanceCell.Options.UseFont = true;
+            this.colbackup_start_date.AppearanceCell.Options.UseTextOptions = true;
+            this.colbackup_start_date.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colbackup_start_date.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colbackup_start_date.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.colbackup_start_date.AppearanceHeader.Options.UseFont = true;
+            this.colbackup_start_date.AppearanceHeader.Options.UseTextOptions = true;
+            this.colbackup_start_date.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colbackup_start_date.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colbackup_start_date.Caption = "Backup time";
+            this.colbackup_start_date.FieldName = "backup_start_date";
+            this.colbackup_start_date.Name = "colbackup_start_date";
+            this.colbackup_start_date.OptionsColumn.AllowEdit = false;
+            this.colbackup_start_date.Visible = true;
+            this.colbackup_start_date.VisibleIndex = 2;
+            // 
+            // coluser_name
+            // 
+            this.coluser_name.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.coluser_name.AppearanceCell.Options.UseFont = true;
+            this.coluser_name.AppearanceCell.Options.UseTextOptions = true;
+            this.coluser_name.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.coluser_name.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.coluser_name.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.coluser_name.AppearanceHeader.Options.UseFont = true;
+            this.coluser_name.AppearanceHeader.Options.UseTextOptions = true;
+            this.coluser_name.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.coluser_name.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.coluser_name.Caption = "Username";
+            this.coluser_name.FieldName = "user_name";
+            this.coluser_name.Name = "coluser_name";
+            this.coluser_name.OptionsColumn.AllowEdit = false;
+            this.coluser_name.Visible = true;
+            this.coluser_name.VisibleIndex = 3;
+            // 
+            // panel3
+            // 
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 41);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(747, 43);
+            this.panel3.TabIndex = 1;
             // 
             // panel2
             // 
@@ -301,7 +414,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(214, 531);
+            this.panel2.Size = new System.Drawing.Size(214, 554);
             this.panel2.TabIndex = 11;
             // 
             // btnReload
@@ -316,11 +429,15 @@
             this.btnReload.Text = "Reload";
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
+            // position_backupsTableAdapter
+            // 
+            this.position_backupsTableAdapter.ClearBeforeFill = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(933, 554);
+            this.ClientSize = new System.Drawing.Size(961, 554);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.barDockControlLeft);
@@ -340,6 +457,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.grctrlDbs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvDbs)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.position_backupsGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsPbs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -351,8 +471,7 @@
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.Bar bar1;
         private DevExpress.XtraBars.BarButtonItem btnBak;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
-        private DevExpress.XtraBars.Bar bar3;
+        private DevExpress.XtraBars.BarButtonItem btnRestore;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
@@ -373,5 +492,14 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private DevExpress.XtraEditors.SimpleButton btnReload;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.BindingSource bdsPbs;
+        private DSTableAdapters.position_backupsTableAdapter position_backupsTableAdapter;
+        private DevExpress.XtraGrid.GridControl position_backupsGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn colposition;
+        private DevExpress.XtraGrid.Columns.GridColumn coldescription;
+        private DevExpress.XtraGrid.Columns.GridColumn colbackup_start_date;
+        private DevExpress.XtraGrid.Columns.GridColumn coluser_name;
     }
 }

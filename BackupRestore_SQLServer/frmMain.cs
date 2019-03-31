@@ -23,6 +23,8 @@ namespace BackupRestore_SQLServer
             // TODO: This line of code loads data into the 'dS.databases' table. You can move, or remove it, as needed.
             this.databasesTableAdapter.Connection.ConnectionString = Program.connstr;
             this.databasesTableAdapter.Fill(this.DS.databases);
+            this.position_backupsTableAdapter.Connection.ConnectionString = Program.connstr;
+
         }
 
         private void btnExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -70,7 +72,6 @@ namespace BackupRestore_SQLServer
             try
             {
                 this.databasesTableAdapter.Fill(this.DS.databases);
-                this.databasesTableAdapter.Fill(this.DS.databases);
 
             }
             catch (Exception ex)
@@ -78,6 +79,21 @@ namespace BackupRestore_SQLServer
                 MessageBox.Show("Lỗi Reload :" + ex.Message, "", MessageBoxButtons.OK);
                 return;
             }
+        }
+
+        private void btnRestore_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Program.FrmMain.Enabled = false;
+            frmRestore f = new frmRestore();
+            f.Show();
+        }
+
+        
+
+        private void grvDbs_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            //Program.dBname = ((DataRowView)bdsDbs[bdsDbs.Position])["name"].ToString().Trim();
+            //this.position_backupsTableAdapter.Fill(this.DS.position_backups, ((DataRowView)bdsDbs[bdsDbs.Position])["name"].ToString().Trim());
         }
     }
 }

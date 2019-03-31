@@ -150,6 +150,7 @@
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtDescript
             // 
@@ -189,6 +190,7 @@
             this.chkboxOw.Size = new System.Drawing.Size(15, 14);
             this.chkboxOw.TabIndex = 0;
             this.chkboxOw.UseVisualStyleBackColor = true;
+            this.chkboxOw.CheckStateChanged += new System.EventHandler(this.chkboxOw_CheckStateChanged);
             // 
             // label3
             // 
