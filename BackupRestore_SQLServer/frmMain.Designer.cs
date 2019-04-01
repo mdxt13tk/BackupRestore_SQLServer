@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
+            System.Windows.Forms.Label nameLabel;
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnBak = new DevExpress.XtraBars.BarButtonItem();
@@ -63,6 +64,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnReload = new DevExpress.XtraEditors.SimpleButton();
             this.position_backupsTableAdapter = new BackupRestore_SQLServer.DSTableAdapters.position_backupsTableAdapter();
+            this.nameLabel1 = new System.Windows.Forms.Label();
+            nameLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDbs)).BeginInit();
@@ -72,6 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.position_backupsGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPbs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -298,12 +302,12 @@
             // position_backupsGridControl
             // 
             this.position_backupsGridControl.DataSource = this.bdsPbs;
-            this.position_backupsGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.position_backupsGridControl.Location = new System.Drawing.Point(0, 84);
+            this.position_backupsGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.position_backupsGridControl.Location = new System.Drawing.Point(0, 97);
             this.position_backupsGridControl.MainView = this.gridView1;
             this.position_backupsGridControl.MenuManager = this.barManager1;
             this.position_backupsGridControl.Name = "position_backupsGridControl";
-            this.position_backupsGridControl.Size = new System.Drawing.Size(747, 348);
+            this.position_backupsGridControl.Size = new System.Drawing.Size(747, 457);
             this.position_backupsGridControl.TabIndex = 2;
             this.position_backupsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -401,10 +405,12 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(nameLabel);
+            this.panel3.Controls.Add(this.nameLabel1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 41);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(747, 43);
+            this.panel3.Size = new System.Drawing.Size(747, 56);
             this.panel3.TabIndex = 1;
             // 
             // panel2
@@ -433,6 +439,26 @@
             // 
             this.position_backupsTableAdapter.ClearBeforeFill = true;
             // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            nameLabel.Location = new System.Drawing.Point(15, 20);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new System.Drawing.Size(66, 16);
+            nameLabel.TabIndex = 0;
+            nameLabel.Text = "Database:";
+            // 
+            // nameLabel1
+            // 
+            this.nameLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsDbs, "name", true));
+            this.nameLabel1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameLabel1.Location = new System.Drawing.Point(96, 20);
+            this.nameLabel1.Name = "nameLabel1";
+            this.nameLabel1.Size = new System.Drawing.Size(100, 23);
+            this.nameLabel1.TabIndex = 1;
+            this.nameLabel1.Text = "name";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -460,6 +486,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.position_backupsGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPbs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -501,5 +529,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn coldescription;
         private DevExpress.XtraGrid.Columns.GridColumn colbackup_start_date;
         private DevExpress.XtraGrid.Columns.GridColumn coluser_name;
+        private System.Windows.Forms.Label nameLabel1;
     }
 }

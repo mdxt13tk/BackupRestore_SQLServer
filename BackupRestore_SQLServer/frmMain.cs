@@ -25,6 +25,8 @@ namespace BackupRestore_SQLServer
             this.databasesTableAdapter.Fill(this.DS.databases);
             this.position_backupsTableAdapter.Connection.ConnectionString = Program.connstr;
 
+            Program.dBname = ((DataRowView)bdsDbs[bdsDbs.Position])["name"].ToString().Trim();
+
         }
 
         private void btnExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -61,7 +63,6 @@ namespace BackupRestore_SQLServer
 
         private void btnBak_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Program.dBname = ((DataRowView)bdsDbs[bdsDbs.Position])["name"].ToString().Trim();
             Program.FrmMain.Enabled = false;
             frmBak f = new frmBak();
             f.Show();
@@ -72,7 +73,6 @@ namespace BackupRestore_SQLServer
             try
             {
                 this.databasesTableAdapter.Fill(this.DS.databases);
-
             }
             catch (Exception ex)
             {
@@ -87,13 +87,11 @@ namespace BackupRestore_SQLServer
             frmRestore f = new frmRestore();
             f.Show();
         }
-
         
-
         private void grvDbs_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            //Program.dBname = ((DataRowView)bdsDbs[bdsDbs.Position])["name"].ToString().Trim();
-            //this.position_backupsTableAdapter.Fill(this.DS.position_backups, ((DataRowView)bdsDbs[bdsDbs.Position])["name"].ToString().Trim());
+            Program.dBname = ((DataRowView)bdsDbs[bdsDbs.Position])["name"].ToString().Trim();
+            this.position_backupsTableAdapter.Fill(this.DS.position_backups, Program.dBname);
         }
     }
 }
