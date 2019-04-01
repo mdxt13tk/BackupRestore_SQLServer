@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             System.Windows.Forms.Label nameLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnBak = new DevExpress.XtraBars.BarButtonItem();
@@ -61,10 +61,10 @@
             this.colbackup_start_date = new DevExpress.XtraGrid.Columns.GridColumn();
             this.coluser_name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.nameLabel1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnReload = new DevExpress.XtraEditors.SimpleButton();
             this.position_backupsTableAdapter = new BackupRestore_SQLServer.DSTableAdapters.position_backupsTableAdapter();
-            this.nameLabel1 = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
@@ -78,6 +78,16 @@
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            nameLabel.Location = new System.Drawing.Point(15, 20);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new System.Drawing.Size(66, 16);
+            nameLabel.TabIndex = 0;
+            nameLabel.Text = "Database:";
             // 
             // barManager1
             // 
@@ -327,6 +337,8 @@
             this.gridView1.GridControl = this.position_backupsGridControl;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colbackup_start_date, DevExpress.Data.ColumnSortOrder.Descending)});
             // 
             // colposition
             // 
@@ -378,7 +390,10 @@
             this.colbackup_start_date.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colbackup_start_date.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colbackup_start_date.Caption = "Backup time";
+            this.colbackup_start_date.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
+            this.colbackup_start_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colbackup_start_date.FieldName = "backup_start_date";
+            this.colbackup_start_date.GroupInterval = DevExpress.XtraGrid.ColumnGroupInterval.Date;
             this.colbackup_start_date.Name = "colbackup_start_date";
             this.colbackup_start_date.OptionsColumn.AllowEdit = false;
             this.colbackup_start_date.Visible = true;
@@ -413,6 +428,16 @@
             this.panel3.Size = new System.Drawing.Size(747, 56);
             this.panel3.TabIndex = 1;
             // 
+            // nameLabel1
+            // 
+            this.nameLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsDbs, "name", true));
+            this.nameLabel1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameLabel1.Location = new System.Drawing.Point(96, 20);
+            this.nameLabel1.Name = "nameLabel1";
+            this.nameLabel1.Size = new System.Drawing.Size(100, 23);
+            this.nameLabel1.TabIndex = 1;
+            this.nameLabel1.Text = "name";
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.grctrlDbs);
@@ -438,26 +463,6 @@
             // position_backupsTableAdapter
             // 
             this.position_backupsTableAdapter.ClearBeforeFill = true;
-            // 
-            // nameLabel
-            // 
-            nameLabel.AutoSize = true;
-            nameLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            nameLabel.Location = new System.Drawing.Point(15, 20);
-            nameLabel.Name = "nameLabel";
-            nameLabel.Size = new System.Drawing.Size(66, 16);
-            nameLabel.TabIndex = 0;
-            nameLabel.Text = "Database:";
-            // 
-            // nameLabel1
-            // 
-            this.nameLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsDbs, "name", true));
-            this.nameLabel1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameLabel1.Location = new System.Drawing.Point(96, 20);
-            this.nameLabel1.Name = "nameLabel1";
-            this.nameLabel1.Size = new System.Drawing.Size(100, 23);
-            this.nameLabel1.TabIndex = 1;
-            this.nameLabel1.Text = "name";
             // 
             // frmMain
             // 
