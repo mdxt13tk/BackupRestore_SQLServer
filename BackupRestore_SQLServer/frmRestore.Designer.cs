@@ -41,6 +41,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRestore";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmRestore_FormClosing);
+            this.Load += new System.EventHandler(this.frmRestore_Load);
             this.ResumeLayout(false);
 
         }

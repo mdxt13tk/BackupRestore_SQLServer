@@ -109,7 +109,7 @@ namespace BackupRestore_SQLServer
         {
             if (chkboxOw.Checked == true)
             {
-                MessageBox.Show("Các bản Backup trong Device này sẽ bị GHI ĐÈ.\nBạn có muốn tiếp tục?", "WARNING!!!", MessageBoxButtons.OK);
+                MessageBox.Show("Các bản Backup trước trong Device này sẽ bị GHI ĐÈ.\nBạn có muốn tiếp tục?", "WARNING!!!", MessageBoxButtons.OK);
             }
         }
     }
