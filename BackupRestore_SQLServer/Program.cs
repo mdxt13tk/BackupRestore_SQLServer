@@ -19,6 +19,7 @@ namespace BackupRestore_SQLServer
         public static String password;
         public static String bakdevname;
         public static String dBname;
+        public static BindingSource bdsPbs;
 
         public static frmLogin FrmLogin;
         public static frmMain FrmMain;

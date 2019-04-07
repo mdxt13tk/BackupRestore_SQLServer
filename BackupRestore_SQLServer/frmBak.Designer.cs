@@ -265,7 +265,6 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
-        public System.Windows.Forms.Label lblDbName;
         private DS DS;
         private System.Windows.Forms.BindingSource bdsBakDev;
         private DSTableAdapters.backup_devicesTableAdapter backup_devicesTableAdapter;
@@ -282,5 +281,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ComboBox cmbBakDevice;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblDbName;
     }
 }

@@ -12,6 +12,7 @@ namespace BackupRestore_SQLServer
 {
     public partial class frmMain : Form
     {
+        DateTime dtbak;
         Boolean dangxuat = false;
         public frmMain()
         {
@@ -26,6 +27,28 @@ namespace BackupRestore_SQLServer
             this.position_backupsTableAdapter.Connection.ConnectionString = Program.connstr;
 
             Program.dBname = ((DataRowView)bdsDbs[bdsDbs.Position])["name"].ToString().Trim();
+            this.position_backupsTableAdapter.Fill(this.DS.position_backups, Program.dBname);
+            Program.bdsPbs = bdsPbs;
+            
+            tgbtnConnect.Checked = false;
+            if (grvPbs.RowCount == 0)
+            {
+                grctrlPbs.Visible = false;
+                btnRestore.Enabled = false;
+                pnNf.Visible = true;
+                pnNf.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                grctrlPbs.Visible = true;
+                btnRestore.Enabled = true;
+                pnNf.Visible = false;
+                grctrlPbs.Dock = DockStyle.Fill;
+            }
+
+            lbNf.Left = (pnNf.Width - lbNf.Width) / 2;
+            lbBakInfo.Left = (pnBakInfo.Width - lbBakInfo.Width) / 2;
+            
 
         }
 
@@ -87,11 +110,64 @@ namespace BackupRestore_SQLServer
             frmRestore f = new frmRestore();
             f.Show();
         }
-        
+
         private void grvDbs_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
+            Program.bdsPbs = bdsPbs;
+            Program.bdsPbs.Position = bdsPbs.Position;
+            tgbtnConnect.Checked = false;
             Program.dBname = ((DataRowView)bdsDbs[bdsDbs.Position])["name"].ToString().Trim();
             this.position_backupsTableAdapter.Fill(this.DS.position_backups, Program.dBname);
+            if (grvPbs.RowCount==0)
+            {
+                grctrlPbs.Visible = false;
+                btnRestore.Enabled = false;
+                pnNf.Visible = true;
+                pnNf.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                grctrlPbs.Visible = true;
+                btnRestore.Enabled = true;
+                pnNf.Visible = false;
+                grctrlPbs.Dock = DockStyle.Fill;
+            }
+        }
+
+        private void grvPbs_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            Program.bdsPbs.Position = bdsPbs.Position;
+        }
+        private void tgbtnConnect_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (tgbtnConnect.Checked==false)
+            {
+                tgbtnConnect.Caption = "MULTI USER";
+                String strLenh1 = "ALTER DATABASE "+Program.dBname+" SET MULTI_USER WITH ROLLBACK IMMEDIATE";
+                try
+                {
+                    Program.myReader = Program.ExecSqlDataReader(strLenh1);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(""+ex, "Lỗi!", MessageBoxButtons.OK);
+                }
+                Program.myReader.Close();
+            }
+            else
+            {
+                tgbtnConnect.Caption = "SINGLE USER";
+                String strLenh2 = "ALTER DATABASE " + Program.dBname + " SET SINGLE_USER WITH ROLLBACK IMMEDIATE";
+                try
+                {
+                    Program.myReader = Program.ExecSqlDataReader(strLenh2);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(""+ex, "Lỗi!", MessageBoxButtons.OK);
+                }
+                Program.myReader.Close();
+            }
         }
     }
 }
